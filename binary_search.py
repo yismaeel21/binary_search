@@ -19,15 +19,26 @@ def find_smallest_positive(xs, val = 0):
     '''
     left = 0
     right = len(xs)-1
-    while left <= right:
+    def go(left,right):
         mid = (left + right)//2
-        if val < xs[mid]:
-            right = mid-1
-        if val > xs[mid]:
-            left = mid + 1
-        if val == xs[mid]:
+        if 0 == xs[mid]:
             return mid + 1
-    return None
+        if left == right:
+            if xs[mid]>0:
+                return mid
+            else:
+                return None
+        if 0 < xs[mid]:
+            return go(left, mid-1)
+        if 0 > xs[mid]:
+            return go(mid+1, right)
+        
+        if xs == []:
+            return
+        if xs[0] > 0:
+            return 0
+        else:
+            return go(left,right)
 
 def count_repeats(xs,x):
     
@@ -50,14 +61,47 @@ def count_repeats(xs,x):
     >>> count_repeats([1, 2, 3], 4)
     0
     '''
+    left = 0
+    right = len(xs) - 1
+    def fxOne(left,right):
+        mid = (left + right)//2
+        if xs[mid] == x:     #checking if the middle character is the one we are looking for
+            if mid == 0: #base case for recursive purposes
+                return mid
+            if xs[mid-1] >x: #if the index prior to the middle is greater than x, we return middle
+                return mid
+            else:
+                return fx1(left, mid-1)
+        if left == right:    #we've reached the end without a solution, there are no recurrances
+            return None
+        if x > xs[mid]:
+            return fx1(left, mid -1):
+        if x < xs[mid]:
+            return fx1(mid + 1, right)
+
+    def fxTwo(left, right):
+        mid = (left+ right)//2
+        if xs[mid] == x:
+            if mid == len(xs)-1 or x > xs[mid+1]:
+                return mid
+            else:
+                return fxTwo(mid + 1, right)
+        if left == right:
+            return None
+        if xs[mid] > x:
+            return fxTwo(mid + 1, right)
+        if x > xs[mid]:
+            return fxTwo(left, mid-1)
+    
     if xs == []:
         return 0
-    if xs[0] == x:
-        return 1 + count_repeats(xs[1:],x)
+    firstOne = fxOne(left, right)
+    secondOne = fxTwo(left, right)
+    
+    if firstOne == None or seconOne == None:
+        return 0
     else:
-        return 0 + count_repeats(xs[1:],x)
-
-
+        return firstOne - secondOne + 1
 def argmin(f, lo, hi, epsilon=1e-3):
     '''
     Assumes that f is an input function that takes a float as input and returns a float with a unique global minimum,
