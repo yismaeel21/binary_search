@@ -34,7 +34,7 @@ def find_smallest_positive(xs, val = 0):
             return go(mid+1, right)
         
         if xs == []:
-            return
+            return None
         if xs[0] > 0:
             return 0
         else:
