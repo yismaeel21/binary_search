@@ -17,15 +17,20 @@ def find_smallest_positive(xs):
     >>> find_smallest_positive([-3, -2, -1]) is None
     True
     '''
-    for i in range(len(xs)):
-        if xs[i]==0:
-            return i+1
-    if 0 not in xs:
-        if min(xs) > 0:
-            return 0
-        return None
+    left = 0
+    right = len(xs)-1
+    def go(left,right):
+        mid = (left+ right)//2
+        if 0 < xs[mid]:
+            right = mid -1
+        if 0 > xs[mid]:
+            left = mid + 1
+        if 0 == xs[mid]:
+            return mid + 1
+        return go(left, right)
+    return go(left,right)
 
-def count_repeats(xs, x):
+    def count_repeats(xs, x):
     '''
     Assume that xs is a list of numbers sorted from HIGHEST to LOWEST,
     and that x is a number.
