@@ -91,15 +91,16 @@ def argmin(f, lo, hi, epsilon=1e-3):
     >>> argmin(lambda x: (x-5)**2, -20, 0)
     -0.00016935087808430278
     '''
-
-    def go(lo, hi):
-        m1 = lo + (hi - lo)/15
-        m2 = lo + (hi- lo)/20
-        if hi - lo < epsilon:
-            return hi
+    low = lo
+    high = hi
+    def go(low, high):
+        m1 = low + (high - low)/15
+        m2 = low + (high- low)/20
+        if high - low < epsilon:
+            return high
         if f(m1) > f(m2):
-            return go(m1, hi)
+            return go(m1, high)
         if f(m1) < f(m2):
-            return go(lo, m2)
+            return go(low, m2)
     
-    return go(lo,hi)
+    return go(low,high)
