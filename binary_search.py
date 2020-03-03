@@ -45,12 +45,12 @@ def count_repeats(xs, x):
     >>> count_repeats([1, 2, 3], 4)
     0
     '''
-   
-   count = 0 
-   for i in xs:
-        if i == x:
-            count += 1
-   return count
+    if xs == []:
+        return 0
+    if xs[0] == x:
+        return 1 + count_repeats(xs[1:],x)
+    else:
+        return 0 + count_repeats(xs[1:],x)
 
 
 def argmin(f, lo, hi, epsilon=1e-3):
