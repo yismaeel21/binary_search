@@ -29,6 +29,8 @@ def find_smallest_positive(xs):
             return mid + 1
         return go(left,right)
     return go(left,right)
+def count_repeats(xs,x):
+    
     '''
     Assume that xs is a list of numbers sorted from HIGHEST to LOWEST,
     and that x is a number.
