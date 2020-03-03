@@ -75,7 +75,7 @@ def count_repeats(xs,x):
         if left == right:    #we've reached the end without a solution, there are no recurrances
             return None
         if x > xs[mid]:   #if our value is greater than the middle value, we keep going until we find one that is equal
-            return fxOne(left, mid -1):
+            return fxOne(left, mid -1)
         if x < xs[mid]:   #if our value is less than the middle value, we go from the middle + 1 to the end... essentially looking for when it equals it
             return fxOne(mid + 1, right)
 
