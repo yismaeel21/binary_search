@@ -72,29 +72,12 @@ def count_repeats(xs,x):
    
 
 def argmin(f, lo, hi, epsilon=1e-3):
-    '''
-    Assumes that f is an input function that takes a float as input and returns a float with a unique global minimum,
-    and that lo and hi are both floats satisfying lo < hi.
-    Returns a number that is within epsilon of the value that minimizes f(x) over the interval [lo,hi]
-
-    HINT:
-    The basic algorithm is:
-        1) The base case is when hi-lo < epsilon
-        2) For each recursive call:
-            a) select two points m1 and m2 that are between lo and hi
-            b) one of the 4 points (lo,m1,m2,hi) must be the smallest;
-               depending on which one is the smallest, 
-               you recursively call your function on the interval [lo,m2] or [m1,hi]
-
-    >>> argmin(lambda x: (x-5)**2, -20, 20)
-    5.000040370009773
-    >>> argmin(lambda x: (x-5)**2, -20, 0)
-    -0.00016935087808430278
-    '''
     low = lo
     high = hi
     def go(low, high):
-        m1 = low + (high - low)/10  
+        m1 = low + (high - low)/10    
+        #At first, I chose to divide by 20 and 15 respectively, but this passed all but one of the cases
+        #So I divided by 10 and 5 instead and it worked flawlessly... I wonder why?
         m2 = low + (high- low)/5
         if high - low < epsilon:
             return high
