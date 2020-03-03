@@ -93,8 +93,8 @@ def argmin(f, lo, hi, epsilon=1e-3):
     '''
 
     def go(lo, hi):
-        mid1 = lo + (hi - lo)/10
-        mid2 = lo + (hi- lo)/15
+        mid1 = lo + (hi - lo)/15
+        mid2 = lo + (hi- lo)/20
         if hi - lo < epsilon:
             return hi
         if f(mid1) > f(mid2):
