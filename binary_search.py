@@ -1,44 +1,27 @@
 #!/bin/python3
-
 def find_smallest_positive(xs, val = 0):
-    '''
-    Assume that xs is a list of numbers sorted from LOWEST to HIGHEST.
-    Find the index of the smallest positive number.
-    If no such index exists, return `None`.
-
-    HINT: 
-    This is essentially the binary search algorithm from class,
-    but you're always searching for 0.
-
-    >>> find_smallest_positive([-3, -2, -1, 0, 1, 2, 3])
-    4
-    >>> find_smallest_positive([1, 2, 3])
-    0
-    >>> find_smallest_positive([-3, -2, -1]) is None
-    True
-    '''
     left = 0
     right = len(xs)-1
-    def go(left,right):
-        mid = (left + right)//2
+    def go(left, right):
+        mid = (left+right)//2
         if 0 == xs[mid]:
             return mid + 1
         if left == right:
-            if xs[mid]>0:
-                return mid + 1
+            if xs[mid] > 0:
+                return mid
             else:
                 return None
         if 0 < xs[mid]:
-            return go(left, mid-1)
+            return go(left, mid - 1)
         if 0 > xs[mid]:
-            return go(mid+1, right)
-        
-        if len(xs) == 0:
-            return None
-        if xs[0] > 0:
-            return 0
-        else:
-            return go(left,right)
+            return go(mid + 1, right)
+
+    if len(xs) == 0:
+        return None
+    if xs[0] > 0:
+        return 0
+    else:
+        return go(left, right)
 
 def count_repeats(xs,x):
     
