@@ -30,7 +30,7 @@ def count_repeats(xs,x):
     def fxOne(left,right):
         mid = (left + right)//2
         if xs[mid] == x:     #checking if the middle character is the one we are looking for
-            if mid == 0 or if xs[mid-1] > x: #base case for recursive purposes or if the index prior to the middle is greater than x, we return middle
+            if mid == 0 or xs[mid-1] > x: #base case for recursive purposes or if the index prior to the middle is greater than x, we return middle
                 return mid
             #if xs[mid-1] >x:
              #   return mid  I tried having it this way but it didnt work at first
