@@ -66,7 +66,7 @@ def count_repeats(xs,x):
     if firstOne == None or secondOne == None:
         return 0
     else:
-        return firstOne - secondOne + 1   #The difference between the first one and the second one, including the first term.
+        return secondOne - firstOne + 1   #The difference between the second one and the first one, including the first term.
 
 
    
