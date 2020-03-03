@@ -100,6 +100,6 @@ def argmin(f, lo, hi, epsilon=1e-3):
         if f(m1) > f(m2):
             return go(m1, hi)
         if f(m1) < f(m2):
-            return go(lo, mid2)
+            return go(lo, m2)
     
     return go(lo,hi)
