@@ -94,8 +94,8 @@ def argmin(f, lo, hi, epsilon=1e-3):
     low = lo
     high = hi
     def go(low, high):
-        m1 = low + (high - low)/15
-        m2 = low + (high- low)/20
+        m1 = low + (high - low)/20  
+        m2 = low + (high- low)/15
         if high - low < epsilon:
             return high
         if f(m1) > f(m2):
