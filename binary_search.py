@@ -19,12 +19,12 @@ def find_smallest_positive(xs):
     '''
     left = 0
     right = len(xs)-1
-    def go(right, left)
+    def go(left, right)
         mid = (left + right)//2
         if 0 < xs[mid]:
             right = mid - 1
         if 0 > xs[mid]:
-            left = mid -1
+            left = mid +1
         if 0 == xs[mid]:
             return mid + 1
         return go(left,right)
