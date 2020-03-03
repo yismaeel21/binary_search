@@ -5,16 +5,16 @@ def find_smallest_positive(xs, val = 0):
     def go(left, right):
         mid = (left+right)//2
         if 0 == xs[mid]:
-            return mid + 1
+            return mid+1
         if left == right:
             if xs[mid] > 0:
                 return mid
             else:
                 return None
         if 0 < xs[mid]:
-            return go(left, mid - 1)
+            return go(left, mid-1)
         if 0 > xs[mid]:
-            return go(mid + 1, right)
+            return go(mid+1, right)
 
     if len(xs) == 0:
         return None
@@ -24,37 +24,19 @@ def find_smallest_positive(xs, val = 0):
         return go(left, right)
 
 def count_repeats(xs,x):
-    
-    '''
-    Assume that xs is a list of numbers sorted from HIGHEST to LOWEST,
-    and that x is a number.
-    Calculate the number of times that x occurs in xs.
-
-    HINT: 
-    Use the following three step procedure:
-        1) use binary search to find the lowest index with a value >= x
-        2) use binary search to find the lowest index with a value < x
-        3) return the difference between step 1 and 2
-
-    I highly recommend creating stand-alone functions for steps 1 and 2
-    that you can test independently.
-
-    >>> count_repeats([5, 4, 3, 3, 3, 3, 3, 3, 3, 2, 1], 3)
-    7
-    >>> count_repeats([1, 2, 3], 4)
-    0
-    '''
     left = 0
     right = len(xs) - 1
+   
     def fxOne(left,right):
         mid = (left + right)//2
         if xs[mid] == x:     #checking if the middle character is the one we are looking for
-            if mid == 0: #base case for recursive purposes
+            if mid == 0 or if xs[mid-1] > x: #base case for recursive purposes or if the index prior to the middle is greater than x, we return middle
                 return mid
-            if xs[mid-1] >x: #if the index prior to the middle is greater than x, we return middle
-                return mid
+            #if xs[mid-1] >x:
+             #   return mid  I tried having it this way but it didnt work at first
             else:
                 return fxOne(left, mid-1)
+       
         if left == right:    #we've reached the end without a solution, there are no recurrances
             return None
         if x > xs[mid]:   #if our value is greater than the middle value, we keep going until we find one that is equal
@@ -65,7 +47,7 @@ def count_repeats(xs,x):
     def fxTwo(left, right):
         mid = (left+ right)//2
         if xs[mid] == x:
-            if mid == len(xs)-1 or x > xs[mid+1]:
+            if mid == (len(xs)-1) or x > xs[mid+1]:  #Same as the one above but going from the right onwards
                 return mid
             else:
                 return fxTwo(mid + 1, right)
@@ -81,7 +63,7 @@ def count_repeats(xs,x):
     firstOne = fxOne(left, right)
     secondOne = fxTwo(left, right)
     
-    if firstOne == None or seconOne == None:
+    if firstOne == None or secondOne == None:
         return 0
     else:
         return firstOne - secondOne + 1   #The difference between the first one and the second one, including the first term.
