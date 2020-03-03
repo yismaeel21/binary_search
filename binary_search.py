@@ -71,13 +71,13 @@ def count_repeats(xs,x):
             if xs[mid-1] >x: #if the index prior to the middle is greater than x, we return middle
                 return mid
             else:
-                return fx1(left, mid-1)
+                return fxOne(left, mid-1)
         if left == right:    #we've reached the end without a solution, there are no recurrances
             return None
         if x > xs[mid]:
-            return fx1(left, mid -1):
+            return fxOne(left, mid -1):
         if x < xs[mid]:
-            return fx1(mid + 1, right)
+            return fxOne(mid + 1, right)
 
     def fxTwo(left, right):
         mid = (left+ right)//2
