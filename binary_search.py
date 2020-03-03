@@ -74,9 +74,9 @@ def count_repeats(xs,x):
                 return fxOne(left, mid-1)
         if left == right:    #we've reached the end without a solution, there are no recurrances
             return None
-        if x > xs[mid]:
+        if x > xs[mid]:   #if our value is greater than the middle value, we keep going until we find one that is equal
             return fxOne(left, mid -1):
-        if x < xs[mid]:
+        if x < xs[mid]:   #if our value is less than the middle value, we go from the middle + 1 to the end... essentially looking for when it equals it
             return fxOne(mid + 1, right)
 
     def fxTwo(left, right):
@@ -101,7 +101,11 @@ def count_repeats(xs,x):
     if firstOne == None or seconOne == None:
         return 0
     else:
-        return firstOne - secondOne + 1
+        return firstOne - secondOne + 1   #The difference between the first one and the second one, including the first term.
+
+
+   
+
 def argmin(f, lo, hi, epsilon=1e-3):
     '''
     Assumes that f is an input function that takes a float as input and returns a float with a unique global minimum,
@@ -123,3 +127,8 @@ def argmin(f, lo, hi, epsilon=1e-3):
     -0.00016935087808430278
     '''
 
+    left = lo
+    right = hi
+    
+    def go(left, right):
+        mid1 = left +
