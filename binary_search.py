@@ -1,6 +1,6 @@
 #!/bin/python3
 
-def find_smallest_positive(xs):
+def find_smallest_positive(xs, val = 0):
     '''
     Assume that xs is a list of numbers sorted from LOWEST to HIGHEST.
     Find the index of the smallest positive number.
@@ -19,16 +19,16 @@ def find_smallest_positive(xs):
     '''
     left = 0
     right = len(xs)-1
-    def go(left,right):
+    while left <= right:
         mid = (left + right)//2
-        if 0 < xs[mid]:
-            right = mid - 1
-        if 0 > xs[mid]:
-            left = mid +1
-        if 0 == xs[mid]:
+        if val < xs[mid]:
+            right = mid-1
+        if val > xs[mid]:
+            left = mid + 1
+        if val == xs[mid]:
             return mid + 1
-        return go(left,right)
-    return go(left,right)
+    return None
+
 def count_repeats(xs,x):
     
     '''
