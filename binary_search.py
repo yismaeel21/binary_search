@@ -17,7 +17,13 @@ def find_smallest_positive(xs):
     >>> find_smallest_positive([-3, -2, -1]) is None
     True
     '''
-
+    for i in range(len(xs)):
+        if xs[i]==0:
+            return i+1
+    if 0 not in xs:
+        if min(xs) > 0:
+            return 0
+        return None
 
 def count_repeats(xs, x):
     '''
@@ -39,6 +45,12 @@ def count_repeats(xs, x):
     >>> count_repeats([1, 2, 3], 4)
     0
     '''
+   
+   count = 0 
+   for i in xs:
+        if i == x:
+            count += 1
+   return count
 
 
 def argmin(f, lo, hi, epsilon=1e-3):
